@@ -45,16 +45,55 @@ After establishing a connection, clients can send and receive data using send() 
 
 ## Use Cases of Socket Programming:
 Socket programming finds applications in various domains, including web development, file transfer protocols, online gaming, and real-time communication. It is the foundation for protocols like HTTP, FTP, and SMTP, which power the internet. Socket programming enables the development of both server and client applications, facilitating the exchange of information between devices in a networked environment.
-## Client:
+
+## Input:
+Client:
+```
+import socket             
+# next create a socket object 
+s = socket.socket()         
+print ("Socket successfully created")
+port = 12345                
+s.bind(('', port))         
+print ("socket binded to %s" %(port)) 
+s.listen(5)     
+print ("socket is listening")            
+while True: 
+  c, addr = s.accept()     
+  print ('Got connection from', addr )
+  c.send('Thank you for connecting'.encode()) 
+  # Close the connection with the client 
+c.close()
+```
+Server:
+```
+# Import socket module 
+import socket             
+
+# Create a socket object 
+s = socket.socket()         
+
+# Define the port on which you want to connect 
+port = 12345                
+
+# connect to the server on local computer 
+s.connect(('127.0.0.1', port)) 
+
+# receive data from the server and decoding to get the string.
+print (s.recv(1024).decode())
+# close the connection 
+s.close()
+```
+
+## Output:
+ Client:
 
 <img width="1142" height="792" alt="Screenshot 2026-01-30 182302" src="https://github.com/user-attachments/assets/6f8cb71d-55de-46bc-9f00-e1ff42a9b991" />
 
 
-## Server:
+ Server:
 
 <img width="1207" height="893" alt="Screenshot 2026-01-30 182317" src="https://github.com/user-attachments/assets/7452f3c1-2685-47ce-bfb7-43174bdaaaba" />
-
-
 
 ## Result:
 Thus the study of Socket Programming Completed Successfully
